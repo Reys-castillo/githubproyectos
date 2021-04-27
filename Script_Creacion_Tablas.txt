@@ -1,0 +1,144 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE db_unphu;
+Query OK, 1 row affected (0.20 sec)
+
+mysql> use db_unphu;
+Database changed
+mysql> CREATE TABLE ESTUDIANTES (MATRICULA INT NOT NULL AUTO_INCREMENT PRIMARY KEY, NOMBRE VARCHAR(50), APELLIDO VARCHAR(50), CEDULA VARCHAR(11), TELEFONO VARCHAR(12), NACIONALIDAD VARCHAR(25), EMAIL VARCHAR(50), SEXO VARCHAR(9), CARRERA VARCHAR(50));
+Query OK, 0 rows affected (1.58 sec)
+
+mysql> DESC ESTUDIANTES;
++--------------+-------------+------+-----+---------+----------------+
+| Field        | Type        | Null | Key | Default | Extra          |
++--------------+-------------+------+-----+---------+----------------+
+| MATRICULA    | int         | NO   | PRI | NULL    | auto_increment |
+| NOMBRE       | varchar(50) | YES  |     | NULL    |                |
+| APELLIDO     | varchar(50) | YES  |     | NULL    |                |
+| CEDULA       | varchar(11) | YES  |     | NULL    |                |
+| TELEFONO     | varchar(12) | YES  |     | NULL    |                |
+| NACIONALIDAD | varchar(25) | YES  |     | NULL    |                |
+| EMAIL        | varchar(50) | YES  |     | NULL    |                |
+| SEXO         | varchar(9)  | YES  |     | NULL    |                |
+| CARRERA      | varchar(50) | YES  |     | NULL    |                |
++--------------+-------------+------+-----+---------+----------------+
+9 rows in set (0.05 sec)
+
+mysql> INSERT INTO ESTUDIANTES(MATRICULA, NOMBRE, APELLIDO, CEDULA, TELEFONO, NACIONALIDAD, EMAIL,  SEXO, CARRERA) VALUES (170142, 'REY SMERLING', 'CASTILLO', '402-12597-9', '809-564-8957', 'DOMINICANA',  'REYCASTILLO2119@GMAIL.COM', 'MASCULINO', 'INGENIERIA EN SISTEMAS');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> SELECT * FROM ESTUDIANTES;
++-----------+--------------+----------+-------------+--------------+--------------+---------------------------+-----------+------------------------+
+| MATRICULA | NOMBRE       | APELLIDO | CEDULA      | TELEFONO     | NACIONALIDAD | EMAIL                     | SEXO      | CARRERA                |
++-----------+--------------+----------+-------------+--------------+--------------+---------------------------+-----------+------------------------+
+|    170142 | REY SMERLING | CASTILLO | 402-12597-9 | 809-564-8957 | DOMINICANA   | REYCASTILLO2119@GMAIL.COM | MASCULINO | INGENIERIA EN SISTEMAS |
++-----------+--------------+----------+-------------+--------------+--------------+---------------------------+-----------+------------------------+
+1 row in set (0.01 sec)
+
+mysql>  CREATE TABLE PROFESORES (ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, NOMBRE VARCHAR (50), APELLIDO VARCHAR (50), DIRECCION VARCHAR (50), TELEFONO VARCHAR(12), EMAIL VARCHAR (50), CEDULA VARCHAR (11));
+Query OK, 0 rows affected (1.03 sec)
+
+mysql> DESC PROFESORES;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| ID        | int         | NO   | PRI | NULL    | auto_increment |
+| NOMBRE    | varchar(50) | YES  |     | NULL    |                |
+| APELLIDO  | varchar(50) | YES  |     | NULL    |                |
+| DIRECCION | varchar(50) | YES  |     | NULL    |                |
+| TELEFONO  | varchar(12) | YES  |     | NULL    |                |
+| EMAIL     | varchar(50) | YES  |     | NULL    |                |
+| CEDULA    | varchar(11) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+7 rows in set (0.07 sec)
+
+mysql> INSERT INTO PROFESORES (ID, NOMBRE, APELLIDO, DIRECCION, TELEFONO, EMAIL, CEDULA) VALUES (1, 'HUGO ALBERTO', 'CASTRO', ' Av. 148 No. 125-98', '809-526-2564', 'HUGOA@GMAIL.COM', '402-96568-4');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> SELECT * FROM PROFESORES;
++----+--------------+----------+---------------------+--------------+-----------------+-------------+
+| ID | NOMBRE       | APELLIDO | DIRECCION           | TELEFONO     | EMAIL           | CEDULA      |
++----+--------------+----------+---------------------+--------------+-----------------+-------------+
+|  1 | HUGO ALBERTO | CASTRO   |  Av. 148 No. 125-98 | 809-526-2564 | HUGOA@GMAIL.COM | 402-96568-4 |
++----+--------------+----------+---------------------+--------------+-----------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE MATERIAS (CODIGO VARCHAR (25) NOT NULL, PRIMARY KEY (CODIGO), NOMBRE VARCHAR (50), CREDITOS INT);
+Query OK, 0 rows affected (0.55 sec)
+
+mysql> DESC MATERIAS;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| CODIGO   | varchar(25) | NO   | PRI | NULL    |       |
+| NOMBRE   | varchar(50) | YES  |     | NULL    |       |
+| CREDITOS | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.09 sec)
+
+mysql> INSERT INTO MATERIAS (CODIGO, NOMBRE, CREDITOS) VALUES ('MAT-253', 'GEOMETRIA ANALITICA', 4);
+Query OK, 1 row affected (0.20 sec)
+
+mysql> SELECT * FROM MATERIAS;
++---------+---------------------+----------+
+| CODIGO  | NOMBRE              | CREDITOS |
++---------+---------------------+----------+
+| MAT-253 | GEOMETRIA ANALITICA |        4 |
++---------+---------------------+----------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE MATERIA_X_CARRERA (CODIGO_CARRERA VARCHAR(50), PRIMARY KEY(CODIGO_CARRERA), NOMBRE_CARRERA VARCHAR (50), MATERIA_X_CARRERA INT);
+Query OK, 0 rows affected (3.00 sec)
+
+mysql> INSERT INTO MATERIA_X_CARRERA (CODIGO_CARRERA,NOMBRE_CARRERA, MATERIA_X_CARRERA) VALUES ('PROG001', 'ADMIN DE EMPRESAS', '67');
+Query OK, 1 row affected (0.17 sec)
+
+mysql> SELECT * FROM MATERIA_X_CARRERA;
++----------------+-------------------+-------------------+
+| CODIGO_CARRERA | NOMBRE_CARRERA    | MATERIA_X_CARRERA |
++----------------+-------------------+-------------------+
+| PROG001        | ADMIN DE EMPRESAS |                67 |
++----------------+-------------------+-------------------+
+1 row in set (0.00 sec)
+
+CREATE TABLE SECCIONES_X_ESTUDIANTES (CODIGO_MATERIA VARCHAR (50), PRIMARY KEY (CODIGO_MATERIA), FECHA_PERIODO VARCHAR (50), NUMERO_SECCION INT, GRUPOS_DISPONIBLES INT, NOMBRE_PROFESORES VARCHAR (50), NOMBRE_MATERIA VARCHAR (50));
+Query OK, 0 rows affected (1.69 sec)
+
+mysql> INSERT INTO SECCIONES_X_ESTUDIANTES (CODIGO_MATERIA,FECHA_PERIODO,NUMERO_SECCION,GRUPOS_DISPONIBLES,NOMBRE_PROFESORES,NOMBRE_MATERIA) VALUES ('PROG002', 'MAYO - AGOSTO 2021', 01, 9, 'PEDRO DE LOS SANTOS', 'GASTRONOMIA');
+Query OK, 1 row affected (0.35 sec)
+
+mysql> SELECT * FROM SECCIONES_X_ESTUDIANTES;
++----------------+--------------------+----------------+--------------------+---------------------+----------------+
+| CODIGO_MATERIA | FECHA_PERIODO      | NUMERO_SECCION | GRUPOS_DISPONIBLES | NOMBRE_PROFESORES   | NOMBRE_MATERIA |
++----------------+--------------------+----------------+--------------------+---------------------+----------------+
+| PROG002        | MAYO - AGOSTO 2021 |              1 |                  9 | PEDRO DE LOS SANTOS | GASTRONOMIA    |
++----------------+--------------------+----------------+--------------------+---------------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE SECCIONES_X_PROFESORES(CODIGO_MATERIA VARCHAR (50), PRIMARY KEY (CODIGO_MATERIA), FECHA_PERIODO VARCHAR (50), NUMERO_SECCION INT, GRUPOS_DISPONIBLES INT, NOMBRE_MATERIA VARCHAR (50));
+Query OK, 0 rows affected (17.38 sec)
+
+mysql> insert into secciones_x_profesores (CODIGO_MATERIA,FECHA_PERIODO,NUMERO_SECCION,GRUPOS_DISPONIBLES,NOMBRE_MATERIA) VALUES ('FIS-001','SEPTIEMBRE - DICIEMBRE 2021',2,5,'FISICA 1');
+Query OK, 1 row affected (0.36 sec)
+
+mysql> SELECT * FROM SECCIONES_X_PROFESORES;
++----------------+-----------------------------+----------------+--------------------+----------------+
+| CODIGO_MATERIA | FECHA_PERIODO               | NUMERO_SECCION | GRUPOS_DISPONIBLES | NOMBRE_MATERIA |
++----------------+-----------------------------+----------------+--------------------+----------------+
+| FIS-001        | SEPTIEMBRE - DICIEMBRE 2021 |              2 |                  5 | FISICA 1       |
++----------------+-----------------------------+----------------+--------------------+----------------+
+1 row in set (0.11 sec)
+
+mysql> CREATE TABLE MATERIAS (CODIGO VARCHAR (25), PRIMARY KEY(CODIGO), NOMBRE VARCHAR (50), CREDITOS INT);
+mysql> INSERT INTO MATERIAS (CODIGO,NOMBRE,CREDITOS) VALUES ('MAT-253', 'GEOMETRIA ANALITICA',4);
